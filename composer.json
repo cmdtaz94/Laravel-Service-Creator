@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "nazonhou/laravel-service-creator",
+    "description": "A package that help you to create easily business services for your application",
     "keywords": [
-        ":vendor_name",
+        "nazonhou",
         "laravel",
-        ":package_slug"
+        "laravel-service-creator"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/nazonhou/laravel-service-creator",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "AZONHOU Nelson",
+            "email": "azonhounelson@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Nazonhou\\LaravelServiceCreator\\": "src",
+            "Nazonhou\\LaravelServiceCreator\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Nazonhou\\LaravelServiceCreator\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -56,10 +56,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Nazonhou\\LaravelServiceCreator\\LaravelServiceCreatorServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelServiceCreator": "Nazonhou\\LaravelServiceCreator\\Facades\\LaravelServiceCreator"
             }
         }
     },
