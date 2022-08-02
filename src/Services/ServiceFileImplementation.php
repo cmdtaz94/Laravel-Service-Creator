@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceFileImplementation implements ServiceFile
 {
-
     public $disk;
+
     public $separator = '/';
 
     public function __construct()
@@ -18,64 +18,60 @@ class ServiceFileImplementation implements ServiceFile
         ]);
     }
 
-
     /**
-     * @param string $rootNamespace
+     * @param  string  $rootNamespace
      * @return string
      */
     public function getNamespace(string $rootNamespace, string $servicePathName): string
     {
         $paths = explode(separator: $this->separator, string: $servicePathName);
 
-        $namespace = $rootNamespace . "\\Services";
+        $namespace = $rootNamespace.'\\Services';
 
         for ($index = 0; $index < count($paths) - 1; $index++) {
-            $namespace .= "\\" . ucfirst($paths[$index]);
+            $namespace .= '\\'.ucfirst($paths[$index]);
         }
 
         return $namespace;
     }
 
     /**
-     *
-     * @param string $serviceName
+     * @param  string  $serviceName
      * @return string
      */
     public function getServiceName(string $serviceName): string
     {
-        if (!str_ends_with(haystack: $serviceName, needle: 'Service')) {
-            return $serviceName . 'ServiceImplementation';
+        if (! str_ends_with(haystack: $serviceName, needle: 'Service')) {
+            return $serviceName.'ServiceImplementation';
         }
 
-        return $serviceName . 'Implementation';
+        return $serviceName.'Implementation';
     }
 
     /**
-     *
-     * @param string $serviceName
+     * @param  string  $serviceName
      * @return string
      */
     public function getServiceContractName(string $serviceName): string
     {
-        if (!str_ends_with(haystack: $serviceName, needle: 'Service')) {
-            return $serviceName . 'Service';
+        if (! str_ends_with(haystack: $serviceName, needle: 'Service')) {
+            return $serviceName.'Service';
         }
 
         return $serviceName;
     }
 
     /**
-     *
-     * @param string $servicePathName
+     * @param  string  $servicePathName
      * @return string
      */
     public function makeDirectory(string $servicePathName): string
     {
-        $path = 'Services' . '/' . $servicePathName;
+        $path = 'Services'.'/'.$servicePathName;
 
         $directory = dirname($path);
 
-        if (!$this->disk->exists($directory)) {
+        if (! $this->disk->exists($directory)) {
             $this->disk->makeDirectory(path: $directory);
         }
 
@@ -83,10 +79,9 @@ class ServiceFileImplementation implements ServiceFile
     }
 
     /**
-     *
-     * @param string $stub
-     * @param array $replacements
-     * @param string $servicePathName
+     * @param  string  $stub
+     * @param  array  $replacements
+     * @param  string  $servicePathName
      * @return void
      */
     public function createFileFromStub(
@@ -104,6 +99,6 @@ class ServiceFileImplementation implements ServiceFile
 
         $path = $this->makeDirectory(servicePathName: $servicePathName);
 
-        $this->disk->put(path: $path . '.php', contents: $customContents);
+        $this->disk->put(path: $path.'.php', contents: $customContents);
     }
 }

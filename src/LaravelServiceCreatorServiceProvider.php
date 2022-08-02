@@ -3,15 +3,14 @@
 namespace Nazonhou\LaravelServiceCreator;
 
 use Nazonhou\LaravelServiceCreator\Commands\CreateServiceContractFileCommand;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Nazonhou\LaravelServiceCreator\Commands\LaravelServiceCreatorCommand;
 use Nazonhou\LaravelServiceCreator\Services\ServiceFile;
 use Nazonhou\LaravelServiceCreator\Services\ServiceFileImplementation;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelServiceCreatorServiceProvider extends PackageServiceProvider
 {
-
     public array $bindings = [
         ServiceFile::class => ServiceFileImplementation::class,
     ];

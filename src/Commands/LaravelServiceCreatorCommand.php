@@ -8,7 +8,6 @@ use Nazonhou\LaravelServiceCreator\Services\ServiceFile;
 
 class LaravelServiceCreatorCommand extends Command
 {
-
     public $serviceFile;
 
     public function __construct(ServiceFile $serviceFile)
@@ -53,7 +52,7 @@ class LaravelServiceCreatorCommand extends Command
 
         $stub = $this->getStub(withoutContract: $withoutContract);
 
-        if (!$withoutContract) {
+        if (! $withoutContract) {
             Artisan::call(
                 command: CreateServiceContractFileCommand::class,
                 parameters: ['name' => $originalServicePathName]
@@ -77,16 +76,15 @@ class LaravelServiceCreatorCommand extends Command
     protected function getStub(bool $withoutContract): string
     {
         if ($withoutContract) {
-            return __DIR__ . '/../../stubs/ServiceImplementation.php.stub';
+            return __DIR__.'/../../stubs/ServiceImplementation.php.stub';
         }
 
-        return __DIR__ . '/../../stubs/ServiceImplementationWithContract.php.stub';
+        return __DIR__.'/../../stubs/ServiceImplementationWithContract.php.stub';
     }
 
     public function getServicePathName(bool $withoutContract, string $servicePathName): string
     {
         if ($withoutContract) {
-
             return $this->serviceFile->getServiceContractName($servicePathName);
         }
 
@@ -97,10 +95,9 @@ class LaravelServiceCreatorCommand extends Command
         string $namespace,
         string $servicePathName
     ): array {
-
         return  [
             '{{ namespace }}' => $namespace,
-            '{{ serviceName }}' => basename(path: $servicePathName)
+            '{{ serviceName }}' => basename(path: $servicePathName),
         ];
     }
 
@@ -109,11 +106,10 @@ class LaravelServiceCreatorCommand extends Command
         string $servicePathName,
         string $originalServicePathName
     ): array {
-
         return [
             '{{ namespace }}' => $namespace,
             '{{ serviceName }}' => basename(path: $servicePathName),
-            '{{ serviceContract }}' => basename(path: $this->serviceFile->getServiceContractName($originalServicePathName))
+            '{{ serviceContract }}' => basename(path: $this->serviceFile->getServiceContractName($originalServicePathName)),
         ];
     }
 

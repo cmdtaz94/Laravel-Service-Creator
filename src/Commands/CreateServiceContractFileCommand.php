@@ -3,12 +3,10 @@
 namespace Nazonhou\LaravelServiceCreator\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use Nazonhou\LaravelServiceCreator\Services\ServiceFile;
 
 class CreateServiceContractFileCommand extends Command
 {
-
     public $serviceFile;
 
     public function __construct(ServiceFile $serviceFile)
@@ -51,7 +49,7 @@ class CreateServiceContractFileCommand extends Command
 
         $replacements = [
             '{{ namespace }}' => $namespace,
-            '{{ serviceName }}' => basename(path: $servicePathName)
+            '{{ serviceName }}' => basename(path: $servicePathName),
         ];
 
         $stub = $this->getStub();
@@ -72,6 +70,6 @@ class CreateServiceContractFileCommand extends Command
      */
     protected function getStub(): string
     {
-        return __DIR__ . '/../../stubs/ServiceContract.php.stub';
+        return __DIR__.'/../../stubs/ServiceContract.php.stub';
     }
 }
