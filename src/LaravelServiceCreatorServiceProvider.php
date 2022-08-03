@@ -3,6 +3,7 @@
 namespace Nazonhou\LaravelServiceCreator;
 
 use Nazonhou\LaravelServiceCreator\Commands\CreateServiceContractFileCommand;
+use Nazonhou\LaravelServiceCreator\Commands\CreateServiceProviderFileCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Nazonhou\LaravelServiceCreator\Commands\LaravelServiceCreatorCommand;
@@ -29,6 +30,7 @@ class LaravelServiceCreatorServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_laravel-service-creator_table')
             ->hasCommand(LaravelServiceCreatorCommand::class)
-            ->hasCommand(CreateServiceContractFileCommand::class);
+            ->hasCommand(CreateServiceContractFileCommand::class)
+            ->hasCommand(CreateServiceProviderFileCommand::class);
     }
 }

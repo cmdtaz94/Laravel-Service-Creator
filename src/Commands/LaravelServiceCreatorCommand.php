@@ -25,7 +25,8 @@ class LaravelServiceCreatorCommand extends Command
      */
     protected $signature = 'make:service
                             {name : Create a new service class}
-                            {--no-contract : If the service won\'t have a contract}';
+                            {--no-contract : If the service won\'t have a contract}
+                            {--no-provider : If the service won\'t have a provider}';
 
     protected $description = 'Generate service file';
 
@@ -54,10 +55,24 @@ class LaravelServiceCreatorCommand extends Command
         $stub = $this->getStub(withoutContract: $withoutContract);
 
         if (!$withoutContract) {
+            
             Artisan::call(
                 command: CreateServiceContractFileCommand::class,
                 parameters: ['name' => $originalServicePathName]
             );
+
+            $withoutProvider = $this->option('no-provider');
+
+            if (!$withoutProvider) {
+
+                Artisan::call(
+                    command: CreateServiceProviderFileCommand::class,
+                    parameters: [
+                        'contract' => $namespace . '\\' . $replacements['{{ serviceContract }}'],
+                        'service' => $namespace . '\\' . $replacements['{{ serviceName }}'],
+                    ]
+                );
+            }
         }
 
         $this->serviceFile->createFileFromStub(
@@ -121,7 +136,7 @@ class LaravelServiceCreatorCommand extends Command
         bool $withoutContract,
         string $namespace,
         string $servicePathName,
-        ?string $originalServicePathName
+        string $originalServicePathName
     ) {
         if ($withoutContract) {
             return $this->getReplacementsWithoutContract(
