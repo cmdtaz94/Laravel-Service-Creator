@@ -3,8 +3,8 @@
 namespace Nazonhou\LaravelServiceCreator\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Nazonhou\LaravelServiceCreator\LaravelServiceCreatorServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

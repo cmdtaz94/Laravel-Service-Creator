@@ -12,7 +12,6 @@ use Nazonhou\LaravelServiceCreator\Services\ServiceFileImplementation;
 
 class LaravelServiceCreatorServiceProvider extends PackageServiceProvider
 {
-
     public array $bindings = [
         ServiceFile::class => ServiceFileImplementation::class,
     ];
