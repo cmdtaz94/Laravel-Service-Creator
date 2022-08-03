@@ -53,8 +53,7 @@ class LaravelServiceCreatorCommand extends Command
 
         $stub = $this->getStub(withoutContract: $withoutContract);
 
-        if (!$withoutContract) {
-
+        if (! $withoutContract) {
             Artisan::call(
                 command: CreateServiceContractFileCommand::class,
                 parameters: ['name' => $originalServicePathName]
@@ -62,13 +61,12 @@ class LaravelServiceCreatorCommand extends Command
 
             $withoutProvider = $this->option('no-provider');
 
-            if (!$withoutProvider) {
-
+            if (! $withoutProvider) {
                 Artisan::call(
                     command: CreateServiceProviderFileCommand::class,
                     parameters: [
-                        'contract' => $namespace . '\\' . $replacements['{{ serviceContract }}'],
-                        'service' => $namespace . '\\' . $replacements['{{ serviceName }}'],
+                        'contract' => $namespace.'\\'.$replacements['{{ serviceContract }}'],
+                        'service' => $namespace.'\\'.$replacements['{{ serviceName }}'],
                     ]
                 );
             }
@@ -91,10 +89,10 @@ class LaravelServiceCreatorCommand extends Command
     protected function getStub(bool $withoutContract): string
     {
         if ($withoutContract) {
-            return __DIR__ . '/../../stubs/ServiceImplementation.php.stub';
+            return __DIR__.'/../../stubs/ServiceImplementation.php.stub';
         }
 
-        return __DIR__ . '/../../stubs/ServiceImplementationWithContract.php.stub';
+        return __DIR__.'/../../stubs/ServiceImplementationWithContract.php.stub';
     }
 
     public function getServicePathName(bool $withoutContract, string $servicePathName): string

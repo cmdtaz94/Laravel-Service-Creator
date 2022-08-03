@@ -4,11 +4,11 @@ namespace Nazonhou\LaravelServiceCreator;
 
 use Nazonhou\LaravelServiceCreator\Commands\CreateServiceContractFileCommand;
 use Nazonhou\LaravelServiceCreator\Commands\CreateServiceProviderFileCommand;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Nazonhou\LaravelServiceCreator\Commands\LaravelServiceCreatorCommand;
 use Nazonhou\LaravelServiceCreator\Services\ServiceFile;
 use Nazonhou\LaravelServiceCreator\Services\ServiceFileImplementation;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelServiceCreatorServiceProvider extends PackageServiceProvider
 {

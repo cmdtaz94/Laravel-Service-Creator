@@ -8,7 +8,6 @@ use Nazonhou\LaravelServiceCreator\Services\ServiceFile;
 
 class CreateServiceProviderFileCommand extends Command
 {
-
     public $serviceFile;
 
     public function __construct(ServiceFile $serviceFile)
@@ -41,21 +40,19 @@ class CreateServiceProviderFileCommand extends Command
      */
     public function handle()
     {
-
         $serviceContractNamespace = $this->argument('contract');
         $serviceImplementationNamespace = $this->argument('service');
-        $serviceProviderName = basename(path: str_replace(search: '\\', replace: '/', subject: $serviceContractNamespace)) . 'Provider';
+        $serviceProviderName = basename(path: str_replace(search: '\\', replace: '/', subject: $serviceContractNamespace)).'Provider';
 
         $replacements = [
             '{{ serviceContractNamespace }}' => $serviceContractNamespace,
             '{{ serviceImplementationNamespace }}' => $serviceImplementationNamespace,
             '{{ serviceProviderName }}' => $serviceProviderName,
             '{{ serviceContractName }}' => basename(path: str_replace(search: '\\', replace: '/', subject: $serviceContractNamespace)),
-            '{{ serviceImplementationName }}' => basename(path: str_replace(search: '\\', replace: '/', subject: $serviceImplementationNamespace))
+            '{{ serviceImplementationName }}' => basename(path: str_replace(search: '\\', replace: '/', subject: $serviceImplementationNamespace)),
         ];
 
         $stub = $this->getStub();
-
 
         $this->createFileFromStub(
             stub: $stub,
@@ -73,7 +70,7 @@ class CreateServiceProviderFileCommand extends Command
      */
     public function getStub(): string
     {
-        return __DIR__ . '/../../stubs/ServiceProvider.php.stub';
+        return __DIR__.'/../../stubs/ServiceProvider.php.stub';
     }
 
     public function createFileFromStub(string $stub, array $replacements, string $serviceProviderName): void
@@ -83,7 +80,7 @@ class CreateServiceProviderFileCommand extends Command
             'root' => app_path(),
         ]);
 
-        $path = 'Providers' . '/' . $serviceProviderName . '.php';
+        $path = 'Providers'.'/'.$serviceProviderName.'.php';
 
         $contents = str_replace(
             search: array_keys($replacements),
