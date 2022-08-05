@@ -26,38 +26,31 @@ You can install the package via composer:
 composer require nazonhou/laravel-service-creator
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-service-creator-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-service-creator-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-service-creator-views"
-```
-
 ## Usage
 
-```php
-$laravelServiceCreator = new Nazonhou\LaravelServiceCreator();
-echo $laravelServiceCreator->echoPhrase('Hello, Nazonhou!');
+You can create a service file with his contract and service provider by running:
+
+```bash
+php artisan make:service <Name>
 ```
+
+This command will create :
+- A NameService.php file in the app/Services directory with is the service contract (an interface)
+- A NameServiceImplementation.php file in the app/Services directory which implement NameService 
+- A NameServiceProvider.php file in app/Providers directory which is a service provider which contains the binding from the NameService to the NameServiceImplementation in the service container
+
+You can only generate a service file by running.
+
+```bash
+php artisan make:service <Name> --no-contract
+```
+
+You can also generate a service file with his contract without their service provider file by running.
+
+```bash
+php artisan make:service <Name> --no-provider
+```
+
 
 ## Testing
 
